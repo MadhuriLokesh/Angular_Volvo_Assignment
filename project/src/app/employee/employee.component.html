@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-md-7"><b>List of Users</b></div>
+  <div class="col-md-5">
+      <label><b>Search by name:</b></label>
+      <input [(ngModel)]="searchText">
+      <button class="btn btn-primary btn-sm" (click)="cleartext()">Clear</button>
+  </div>
+</div>
+
+<table class="table table-bordered table-sm">
+<thead class="thead-light">
+      <tr>
+          <th colspan="10" class="text-center"> List of Users </th>
+      </tr>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Surname</th>
+    <th>BirthDate</th>
+    <th>Phone</th>
+    <th>City</th>
+    <th>Street</th>
+    <th>Number</th>
+          <th></th>
+          <th></th>
+  </tr>
+</thead>
+<tbody *ngIf="employees">
+  <tr *ngFor="let emp of employees.names | searchfilter : searchText">
+    <td>{{emp.id}}</td>
+    <td>{{emp.name}}</td>
+    <td>{{emp.surname}}</td>
+    <td>{{emp.birthDate}}</td>
+    <td>{{emp.phone}}</td>
+    <td>{{emp.city}}</td>
+    <td>{{emp.street}}</td>
+    <td>{{emp.number}}</td>
+          <td><button class="btn btn-primary btn-sm" (click)="deleteEmployee(emp)"> DELETE </button></td>
+          <td><button class="btn btn-primary btn-sm" (click)="editEmployee(emp)"> EDIT </button></td>
+  </tr>
+  <tr *ngIf = "employees.length==0">
+    <td colspan="10">No data to display</td>
+  </tr>
+</tbody>
+</table>
